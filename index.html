@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <script src="public/jquery-3.1.1.js"></script>
+    <title>Welcome Page</title>
+  </head>
+  <body>
+    <h1>Welcome to my version of Postman </h1>
+    <form class="pure-form">
+      <select class="" name="verb">
+        <option value="get">get</option>
+        <option value="post">post</option>
+        <option value="put">put</option>
+        <option value="delete">delete</option>
+      </select>
+      <input type="text" id="url-box" placeholder="http://localhost:3000/books">
+      <button type="submit" name="button" class="pure-button pure-button-primary">Send</button>
+      <br>
+      <textarea id="data-box" rows="8" cols="40"
+                placeholder='{"name": "bible", "year":"0"}'></textarea>
+    </form>
+    <script type="text/javascript">
+      var theForm = $('form');
+      theForm.on('submit', function(evt){
+        evt.preventDefault();
+        console.log('You clicked the form');
+
+        var method = $( "select option:selected" ).text();
+        var url = $( "#url-box" ).val();
+        var contentType = "application/json";
+        var data = $( "#data-box" ).val();
+        //var origin = "Access-Control-Allow-Origin";
+
+        var opts = {method: method, url: url, contentType: contentType, data: data};
+
+        console.log(opts);
+
+        function cb(dataThatCameBack){
+          console.log(dataThatCameBack);
+        }
+
+        $.ajax(opts).done(cb);
+      });
+    </script>
+  </body>
+</html>
