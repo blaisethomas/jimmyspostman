@@ -31,9 +31,10 @@
         var url = $( "#url-box" ).val();
         var contentType = "application/json";
         var data = $( "#data-box" ).val();
+        var crossDomain = true;
         //var origin = "Access-Control-Allow-Origin";
 
-        var opts = {method: method, url: url, contentType: contentType, data: data};
+        var opts = {method: method, url: url, contentType: contentType, data: data, crossDomain: crossDomain};
 
         console.log(opts);
 
